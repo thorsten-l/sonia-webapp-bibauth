@@ -63,4 +63,4 @@ Usage: ./bibauth.jar [options]
 `./bibauth.jar`
 
 ## Very Important for a production environment!!!
-Put an nginx or Apache HTTPd proxy in front of the bibauth service to provide HTTPS protocol.
+Put an nginx or Apache HTTPd proxy in front of the bibauth service to provide the HTTPS protocol.
