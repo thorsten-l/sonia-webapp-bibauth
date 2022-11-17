@@ -30,12 +30,12 @@ plain security token:  '<plain random token>'
     <clientAuthorizationToken>+ug+LqV38jVJc9hBnfFdkU34b0kLw4Lb0YMN6xe3xNtI9Irl/9FVFWAiitjdbnQs</clientAuthorizationToken>
     <organizations>
         <organization name="orgA">
-            <baseDn>ou=people,o=org-a.de,dc=text,de=de</baseDn>
+            <baseDn>ou=people,o=org-a.de,dc=text,dc=de</baseDn>
             <searchFilter>(&amp;(objectClass=person)(uid={0}))</searchFilter>
             <searchScope>ONE</searchScope>
         </organization>
         <organization name="orgB">
-            <baseDn>o=org-b.de,dc=text,de=de</baseDn>
+            <baseDn>o=org-b.de,dc=text,dc=de</baseDn>
             <searchFilter>(&amp;(objectClass=eduperson)(cn={0}))</searchFilter>
             <searchScope>SUB</searchScope>
         </organization>
