@@ -133,7 +133,7 @@ public class Configuration
     c.liveConfiguration = false;
     c.ldapBarcodeAttributeName = "barcode";
     c.webServerConfig = new WebServerConfig("", 8080, 5, false,
-      new KeyStoreConfig("PKCS12", "classpath:keystore/keystore.p12",
+      new KeyStoreConfig("PKCS12", "keystore.p12",
         "topsecret", "bibauth"));
     Credentials cred = new Credentials("cn=SuperDuperAdmin", "topsecret");
     LdapConfig ldapConfig = new LdapConfig("localhost", 3636, true, cred);
@@ -145,10 +145,10 @@ public class Configuration
     c.clientAuthorizationToken = plainSecurityToken;
 
     List<Organization> ol = new ArrayList<>();
-    ol.add(new Organization("orgA", "ou=people,o=org-a.de,dc=text,de=de",
+    ol.add(new Organization("orgA", "ou=people,o=org-a.de,dc=text,dc=de",
       "(&(objectClass=person)(uid={0}))",
       SearchScope.ONE));
-    ol.add(new Organization("orgB", "o=org-b.de,dc=text,de=de",
+    ol.add(new Organization("orgB", "o=org-b.de,dc=text,dc=de",
       "(&(objectClass=eduperson)(cn={0}))",
       SearchScope.SUB));
 

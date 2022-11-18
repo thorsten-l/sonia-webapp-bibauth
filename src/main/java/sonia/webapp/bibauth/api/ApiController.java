@@ -15,6 +15,7 @@
  */
 package sonia.webapp.bibauth.api;
 
+import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import sonia.webapp.bibauth.BuildProperties;
 import sonia.webapp.bibauth.auth.SonicAuthenticationFacade;
 import sonia.webapp.bibauth.configuration.Configuration;
+import sonia.webapp.bibauth.configuration.Organization;
 
 /**
  *
@@ -74,6 +76,23 @@ public class ApiController
 
     Configuration configuration = Configuration.getActiveConfiguration();
 
+    List<Organization> organizations = configuration.getOrganizations();
+    boolean orgFound = false;
+    for ( Organization o : organizations )
+    {
+      if ( o.getName().equals(organization))
+      {
+        orgFound = true;
+        break;
+      }
+    }
+    
+    if ( orgFound == false )
+    {
+      throw new HttpUnauthorizedException(
+        ApiExceptionHandler.RESPONSE_INVALID_CLIENT);
+    }
+    
     if (!configuration.isInitialized() || !configuration.
       getClientAuthorizationToken().equals(clientAuthorizationToken))
     {

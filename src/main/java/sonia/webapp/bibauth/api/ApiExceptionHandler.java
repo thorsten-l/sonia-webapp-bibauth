@@ -38,7 +38,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
   public final static String RESPONSE_INVALID_CLIENT = "invalid_client";
 
   @ExceptionHandler(Exception.class)
-
   public final ResponseEntity<Object> handleAllExceptions(Exception ex,
     WebRequest request)
   {
