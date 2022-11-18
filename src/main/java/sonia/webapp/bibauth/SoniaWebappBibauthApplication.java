@@ -16,7 +16,6 @@
 package sonia.webapp.bibauth;
 
 import java.io.File;
-import java.security.KeyStore;
 import java.util.Properties;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
@@ -90,15 +89,16 @@ public class SoniaWebappBibauthApplication
     {
       try
       {
-        Configuration c = Configuration.load(new File(OPTIONS.getCheckConfigFile()));
-        LOGGER.debug("{}",c);
-        LOGGER.info( "Configuration OK");
+        Configuration c = Configuration.load(new File(OPTIONS.
+          getCheckConfigFile()));
+        LOGGER.debug("{}", c);
+        LOGGER.info("Configuration OK");
       }
-      catch( Exception e )
+      catch (Exception e)
       {
-        System.err.println( "-----------------------" );
+        System.err.println("-----------------------");
       }
-       
+
       System.exit(0);
     }
 
@@ -114,7 +114,7 @@ public class SoniaWebappBibauthApplication
 
     WebServerConfig wsConfig = Configuration
       .getActiveConfiguration().getWebServerConfig();
-    
+
     if (wsConfig.isSslEnabled())
     {
       KeyStoreConfig ksConfig = wsConfig.getKeystoreConfig();
@@ -125,8 +125,8 @@ public class SoniaWebappBibauthApplication
       sp.put("server.ssl.key-alias", ksConfig.getAlias());
       sp.put("server.ssl.enabled", "true");
     }
-    
-    LOGGER.debug( "{}", Configuration.getActiveConfiguration());
+
+    LOGGER.debug("{}", Configuration.getActiveConfiguration());
     SpringApplication.run(SoniaWebappBibauthApplication.class, args);
   }
 }
