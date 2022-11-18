@@ -10,6 +10,7 @@ bibauth.jar
 secret.bin
 rebel.xml
 rebel.xml*
+keystore.p12
 
 ### STS ###
 .apt_generated

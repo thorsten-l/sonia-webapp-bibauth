@@ -109,7 +109,7 @@ public class Configuration
   {
     if (activeConfiguration == null
       || activeConfiguration.initialized == false
-      || activeConfiguration.liveConfiguration == true )
+      || activeConfiguration.liveConfiguration == true)
     {
       try
       {
@@ -120,7 +120,7 @@ public class Configuration
         LOGGER.error("ERROR: Get active configuration {}", e);
       }
     }
-    
+
     return activeConfiguration;
   }
 
@@ -132,8 +132,10 @@ public class Configuration
     c.description = "bibauth configuration file";
     c.liveConfiguration = false;
     c.ldapBarcodeAttributeName = "barcode";
-    c.webServerConfig = new WebServerConfig("",8080,5);
-    Credentials cred = new Credentials("cn=SuperDuperAdmin", "hotsecret");
+    c.webServerConfig = new WebServerConfig("", 8080, 5, false,
+      new KeyStoreConfig("PKCS12", "classpath:keystore/keystore.p12",
+        "topsecret", "bibauth"));
+    Credentials cred = new Credentials("cn=SuperDuperAdmin", "topsecret");
     LdapConfig ldapConfig = new LdapConfig("localhost", 3636, true, cred);
     c.ldapConfig = ldapConfig;
 
@@ -177,12 +179,13 @@ public class Configuration
   private boolean liveConfiguration;
 
   private WebServerConfig webServerConfig;
-  
+
   private LdapConfig ldapConfig;
-  
+
   private String ldapBarcodeAttributeName;
 
-  @XmlJavaTypeAdapter(sonia.webapp.bibauth.configuration.XmlPasswordAdapter.class)
+  @XmlJavaTypeAdapter(
+    sonia.webapp.bibauth.configuration.XmlPasswordAdapter.class)
   private String clientAuthorizationToken;
 
   @XmlElementWrapper(name = "organizations")

@@ -17,6 +17,7 @@ package sonia.webapp.bibauth.configuration;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,15 +34,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @Getter
 @Setter
-public class WebServerConfig
+public class KeyStoreConfig
 {
-  private String contextPath;
+  private String type;
 
-  private int port;
-  
-  private int sessionTimeoutMinutes;
-  
-  private boolean sslEnabled;
-  
-  private KeyStoreConfig keystoreConfig;
+  private String path;
+
+  @XmlJavaTypeAdapter(
+    sonia.webapp.bibauth.configuration.XmlPasswordAdapter.class)
+  private String password;
+
+  private String alias;
 }

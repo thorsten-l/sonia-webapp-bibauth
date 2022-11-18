@@ -16,6 +16,8 @@
 package sonia.webapp.bibauth;
 
 import java.io.File;
+import java.security.KeyStore;
+import java.util.Properties;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
 import org.slf4j.Logger;
@@ -23,6 +25,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import sonia.webapp.bibauth.configuration.Configuration;
+import sonia.webapp.bibauth.configuration.KeyStoreConfig;
+import sonia.webapp.bibauth.configuration.WebServerConfig;
 import sonia.webapp.bibauth.crypto.AES256;
 import sonia.webapp.bibauth.crypto.AppSecretKey;
 import sonia.webapp.bibauth.crypto.PasswordGenerator;
@@ -108,6 +112,20 @@ public class SoniaWebappBibauthApplication
       System.exit(0);
     }
 
+    WebServerConfig wsConfig = Configuration
+      .getActiveConfiguration().getWebServerConfig();
+    
+    if (wsConfig.isSslEnabled())
+    {
+      KeyStoreConfig ksConfig = wsConfig.getKeystoreConfig();
+      Properties sp = System.getProperties();
+      sp.put("server.ssl.key-store-type", ksConfig.getType());
+      sp.put("server.ssl.key-store", ksConfig.getPath());
+      sp.put("server.ssl.key-store-password", ksConfig.getPassword());
+      sp.put("server.ssl.key-alias", ksConfig.getAlias());
+      sp.put("server.ssl.enabled", "true");
+    }
+    
     LOGGER.debug( "{}", Configuration.getActiveConfiguration());
     SpringApplication.run(SoniaWebappBibauthApplication.class, args);
   }
