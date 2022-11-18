@@ -141,7 +141,7 @@ public class Configuration
 
     String plainSecurityToken = PasswordGenerator.generate(35);
     System.out.
-      println("\nplain security token:  '" + plainSecurityToken + "'\n");
+      println("\nplain client authorization token:  '" + plainSecurityToken + "'\n");
     c.clientAuthorizationToken = plainSecurityToken;
 
     List<Organization> ol = new ArrayList<>();

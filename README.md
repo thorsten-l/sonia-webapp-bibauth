@@ -7,7 +7,7 @@
 ### Output
 
 ```text
-plain security token:  '<plain random token>'
+client authorization token:  '<plain random client authorization>'
 ```
 
 ### sample `configuration.xml` file
@@ -75,6 +75,7 @@ Usage: ./bibauth.jar [options]
 `./bibauth.jar`
 
 ## Very Important for a production environment!!!
-  - Put an nginx or Apache HTTPd proxy in front of the bibauth service to provide the HTTPS protocol.
+
+  - Enable HTTPS protocol or put an nginx or Apache HTTPd proxy in front of the bibauth service to provide the HTTPS protocol.
 
   - Configure your Firewall to restrict the client source ip-addess to the destination service ip-address
