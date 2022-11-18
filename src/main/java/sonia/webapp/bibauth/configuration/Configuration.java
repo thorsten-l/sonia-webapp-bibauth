@@ -132,6 +132,7 @@ public class Configuration
     c.description = "bibauth configuration file";
     c.liveConfiguration = false;
     c.ldapBarcodeAttributeName = "barcode";
+    c.webServerConfig = new WebServerConfig("",8080,5);
     Credentials cred = new Credentials("cn=SuperDuperAdmin", "hotsecret");
     LdapConfig ldapConfig = new LdapConfig("localhost", 3636, true, cred);
     c.ldapConfig = ldapConfig;
@@ -175,6 +176,8 @@ public class Configuration
 
   private boolean liveConfiguration;
 
+  private WebServerConfig webServerConfig;
+  
   private LdapConfig ldapConfig;
   
   private String ldapBarcodeAttributeName;
