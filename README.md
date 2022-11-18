@@ -17,25 +17,37 @@ plain security token:  '<plain random token>'
 <configuration version="1.0">
     <description>bibauth configuration file</description>
     <liveConfiguration>false</liveConfiguration>
+    <webServerConfig>
+        <contextPath></contextPath>
+        <port>8080</port>
+        <sessionTimeoutMinutes>5</sessionTimeoutMinutes>
+        <sslEnabled>false</sslEnabled>
+        <keystoreConfig>
+            <type>PKCS12</type>
+            <path>classpath:keystore/keystore.p12</path>
+            <password>HJvuIK8a2vbQJ0nU+P58Kg==</password>
+            <alias>bibauth</alias>
+        </keystoreConfig>
+    </webServerConfig>
     <ldapConfig>
         <hostname>localhost</hostname>
         <port>3636</port>
         <sslEnabled>true</sslEnabled>
         <credentials>
             <bindDN>cn=SuperDuperAdmin</bindDN>
-            <password>IS3hcQfr5eST9NbRfGzxuQ==</password>
+            <password>HJvuIK8a2vbQJ0nU+P58Kg==</password>
         </credentials>
     </ldapConfig>
     <ldapBarcodeAttributeName>barcode</ldapBarcodeAttributeName>
-    <clientAuthorizationToken>+ug+LqV38jVJc9hBnfFdkU34b0kLw4Lb0YMN6xe3xNtI9Irl/9FVFWAiitjdbnQs</clientAuthorizationToken>
+    <clientAuthorizationToken>XqFOrgcfVN1kX6isBCrHDbYLe3kuWbqJWPimLiuVvYtDLhsfu0J322CWbHwa3FyE</clientAuthorizationToken>
     <organizations>
         <organization name="orgA">
-            <baseDn>ou=people,o=org-a.de,dc=text,dc=de</baseDn>
+            <baseDn>ou=people,o=org-a.de,dc=text,de=de</baseDn>
             <searchFilter>(&amp;(objectClass=person)(uid={0}))</searchFilter>
             <searchScope>ONE</searchScope>
         </organization>
         <organization name="orgB">
-            <baseDn>o=org-b.de,dc=text,dc=de</baseDn>
+            <baseDn>o=org-b.de,dc=text,de=de</baseDn>
             <searchFilter>(&amp;(objectClass=eduperson)(cn={0}))</searchFilter>
             <searchScope>SUB</searchScope>
         </organization>
